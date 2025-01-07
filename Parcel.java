@@ -1,32 +1,27 @@
 public class Parcel {
-    private String id;
+    private String parcelId;
     private double weight;
-    private boolean isProcessed;
+    private String destination;
 
-    public Parcel(String id, double weight) {
-        this.id = id;
+    public Parcel(String parcelId, double weight, String destination) {
+        this.parcelId = parcelId;
         this.weight = weight;
-        this.isProcessed = false;
+        this.destination = destination;
     }
 
-    public String getId() {
-        return id;
+    public String getParcelId() {
+        return parcelId;
     }
 
     public double getWeight() {
         return weight;
     }
 
-    public boolean isProcessed() {
-        return isProcessed;
+    public String getDestination() {
+        return destination;
     }
 
-    public void markAsProcessed() {
-        this.isProcessed = true;
-    }
-
-    @Override
-    public String toString() {
-        return "Parcel{id='" + id + "', weight=" + weight + ", processed=" + isProcessed + "}";
+    public String getDetails() {
+        return "Parcel ID: " + parcelId + ", Weight: " + weight + " kg, Destination: " + destination;
     }
 }
