@@ -5,7 +5,7 @@ public class QueueOfCustomers {
     private Queue<Customer> customerQueue;
 
     public QueueOfCustomers() {
-        customerQueue = new LinkedList<>();
+        this.customerQueue = new LinkedList<>();
     }
 
     public void addCustomer(Customer customer) {
@@ -16,16 +16,11 @@ public class QueueOfCustomers {
         return customerQueue.poll();
     }
 
-    public Customer peekCustomer() {
-        return customerQueue.peek();
+    public Queue<Customer> getCustomers() {
+        return customerQueue;
     }
 
     public boolean isEmpty() {
         return customerQueue.isEmpty();
-    }
-
-    @Override
-    public String toString() {
-        return customerQueue.toString();
     }
 }
