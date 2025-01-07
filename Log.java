@@ -1,31 +1,30 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Log {
     private static Log instance;
-    private StringBuilder logContent;
+    private StringBuilder logEntries;
 
     private Log() {
-        logContent = new StringBuilder();
+        logEntries = new StringBuilder();
     }
 
-    public static Log getInstance() {
+    public static synchronized Log getInstance() {
         if (instance == null) {
             instance = new Log();
         }
         return instance;
     }
 
-    public void logEvent(String event) {
-        logContent.append(event).append("\n");
+    public void addEntry(String entry) {
+        logEntries.append(entry).append("\n");
     }
 
-    public String getLog() {
-        return logContent.toString();
-    }
-
-    public void writeLogToFile(String filename) {
-        try {
-            java.nio.file.Files.write(java.nio.file.Paths.get(filename), logContent.toString().getBytes());
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
+    public void writeLog(String filename) {
+        try (FileWriter writer = new FileWriter(filename)) {
+            writer.write(logEntries.toString());
+        } catch (IOException e) {
+            System.err.println("Error writing log: " + e.getMessage());
         }
     }
 }
