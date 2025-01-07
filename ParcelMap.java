@@ -1,33 +1,26 @@
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
 
 public class ParcelMap {
-    private Map<String, Parcel> parcelMap;
+    private HashMap<String, Parcel> parcelMap;
 
     public ParcelMap() {
-        parcelMap = new HashMap<>();
+        this.parcelMap = new HashMap<>();
     }
 
     public void addParcel(Parcel parcel) {
-        parcelMap.put(parcel.getId(), parcel);
+        parcelMap.put(parcel.getParcelId(), parcel);
     }
 
-    public Parcel getParcel(String id) {
-        return parcelMap.get(id);
+    public Parcel getParcel(String parcelId) {
+        return parcelMap.get(parcelId);
     }
 
-    public boolean containsParcel(String id) {
-        return parcelMap.containsKey(id);
+    public void removeParcel(String parcelId) {
+        parcelMap.remove(parcelId);
     }
 
-    public void markParcelAsProcessed(String id) {
-        if (containsParcel(id)) {
-            parcelMap.get(id).markAsProcessed();
-        }
-    }
-
-    @Override
-    public String toString() {
-        return parcelMap.values().toString();
+    public Collection<Parcel> getParcels() {
+        return parcelMap.values();
     }
 }
